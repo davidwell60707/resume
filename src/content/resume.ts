@@ -113,7 +113,7 @@ export const resumeContent: LocalizedContent = {
     },
     labels: {
       nav: { profile: "首頁", work: "代表專案", experience: "工作經歷", toolkit: "技術能力", about: "關於我", contact: "聯絡" },
-      actions: { contact: "Email 聯絡", resume: "下載公開履歷", expand: "展開", collapse: "收合", backToTop: "返回頂端" },
+      actions: { contact: "Email 聯絡", resume: "下載公開履歷", expand: "查看專案詳情", collapse: "收合詳情", backToTop: "返回頂端" },
       sections: {
         values: "我能帶來的價值", valuesLead: "從需求到上線，不把系統交付切成彼此斷裂的片段。",
         projects: "代表專案", projectsLead: "四個場景，呈現系統分析、開發、整合與維運的實務深度。",
@@ -197,7 +197,7 @@ export const resumeContent: LocalizedContent = {
     },
     labels: {
       nav: { profile: "Profile", work: "Selected Work", experience: "Experience", toolkit: "Toolkit", about: "About", contact: "Contact" },
-      actions: { contact: "Email me", resume: "Download resume", expand: "Expand", collapse: "Collapse", backToTop: "Back to top" },
+      actions: { contact: "Email me", resume: "Download resume", expand: "View project details", collapse: "Collapse details", backToTop: "Back to top" },
       sections: {
         values: "What I Bring", valuesLead: "From requirements to production, I connect the parts that make enterprise delivery dependable.",
         projects: "Selected Work", projectsLead: "Four environments that demonstrate practical depth in analysis, development, integration, and operations.",
