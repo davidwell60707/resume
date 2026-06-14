@@ -23,6 +23,19 @@ export interface ValueProposition {
   description: string;
 }
 
+export interface EvidenceCard {
+  title: string;
+  description: string;
+}
+
+export interface SectionBrief {
+  summary: string[];
+  cards: EvidenceCard[];
+  tags?: string[];
+}
+
+export type SectionBriefKey = "values" | "experience" | "projects" | "skills" | "about";
+
 export interface Project {
   id: string;
   sector: string;
@@ -40,6 +53,7 @@ export interface Experience {
   period: string;
   location: string;
   summary: string;
+  highlights: string[];
   technologies: string[];
 }
 
@@ -64,6 +78,7 @@ export interface Labels {
 
 export interface ResumeContent {
   profile: Profile;
+  sectionBriefs: Record<SectionBriefKey, SectionBrief>;
   values: ValueProposition[];
   projects: Project[];
   experience: Experience[];

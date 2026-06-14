@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 import App from "./App";
@@ -30,6 +30,15 @@ describe("App", () => {
     expect(screen.queryByRole("link", { name: /LinkedIn/i })).not.toBeInTheDocument();
   });
 
+  it("renders evidence briefs and concrete experience highlights", () => {
+    render(<App />);
+
+    expect(screen.getByText("近九年經驗")).toBeVisible();
+    expect(screen.getByText("端到端交付")).toBeVisible();
+    expect(screen.getByText(/JDK 8 升級至 JDK 17/)).toBeVisible();
+    expect(screen.getByText(/需求訪談與 SA／SD 文件/)).toBeVisible();
+  });
+
   it("opens the first project by default and allows it to be collapsed", async () => {
     const user = userEvent.setup();
     render(<App />);
@@ -39,7 +48,9 @@ describe("App", () => {
     });
 
     expect(firstProject).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getByText(/資料同步與批次排程/)).toBeVisible();
+    const firstProjectDetails = document.getElementById("anti-fraud-details");
+    expect(firstProjectDetails).not.toBeNull();
+    expect(within(firstProjectDetails as HTMLElement).getByText(/資料同步與批次排程/)).toBeVisible();
 
     await user.click(firstProject);
 

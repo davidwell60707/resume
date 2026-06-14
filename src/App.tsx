@@ -1,7 +1,7 @@
 import { ArrowUp, ArrowUpRight, ChevronDown, Download, Mail, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
 import { resumeContent } from "./content/resume";
-import type { Labels, Locale, Project, ResumeContent } from "./content/types";
+import type { Labels, Locale, Project, ResumeContent, SectionBrief as SectionBriefData } from "./content/types";
 import { useLocale } from "./hooks/useLocale";
 import { useReveal } from "./hooks/useReveal";
 
@@ -59,6 +59,29 @@ function SectionHeading({ index, title, lead }: { index: string; title: string; 
   );
 }
 
+function SectionBrief({ brief }: { brief: SectionBriefData }) {
+  return (
+    <div className="section-brief" data-reveal>
+      <div className="section-brief-summary">
+        {brief.summary.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        {brief.tags && (
+          <ul className="section-brief-tags" aria-label="Key capabilities">
+            {brief.tags.map((tag) => <li key={tag}>{tag}</li>)}
+          </ul>
+        )}
+      </div>
+      <div className="evidence-grid">
+        {brief.cards.map((card) => (
+          <article key={card.title}>
+            <h3>{card.title}</h3>
+            <p>{card.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Hero({ content }: { content: ResumeContent }) {
   const { profile, labels } = content;
 
@@ -96,6 +119,7 @@ function Values({ content }: { content: ResumeContent }) {
   return (
     <section className="section values-section">
       <SectionHeading index="01" title={content.labels.sections.values} lead={content.labels.sections.valuesLead} />
+      <SectionBrief brief={content.sectionBriefs.values} />
       <div className="values-list">
         {content.values.map((value) => (
           <article key={value.index} data-reveal>
@@ -113,6 +137,7 @@ function Experience({ content }: { content: ResumeContent }) {
   return (
     <section className="section experience-section" id="experience">
       <SectionHeading index="02" title={content.labels.sections.experience} lead={content.labels.sections.experienceLead} />
+      <SectionBrief brief={content.sectionBriefs.experience} />
       <div className="timeline">
         {content.experience.map((item) => (
           <article key={`${item.company}-${item.period}`} data-reveal>
@@ -121,6 +146,9 @@ function Experience({ content }: { content: ResumeContent }) {
               <h3>{item.position}</h3>
               <h4>{item.company}</h4>
               <p>{item.summary}</p>
+              <ul className="experience-highlights">
+                {item.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+              </ul>
               <ul>{item.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
             </div>
           </article>
@@ -190,6 +218,7 @@ function Projects({ content }: { content: ResumeContent }) {
   return (
     <section className="section projects-section" id="work">
       <SectionHeading index="03" title={content.labels.sections.projects} lead={content.labels.sections.projectsLead} />
+      <SectionBrief brief={content.sectionBriefs.projects} />
       <div className="projects-list">
         {content.projects.map((project, index) => (
           <ProjectAccordionItem
@@ -210,6 +239,7 @@ function Toolkit({ content }: { content: ResumeContent }) {
   return (
     <section className="section toolkit-section" id="toolkit">
       <SectionHeading index="04" title={content.labels.sections.skills} lead={content.labels.sections.skillsLead} />
+      <SectionBrief brief={content.sectionBriefs.skills} />
       <div className="skill-groups">
         {content.skills.map((group, index) => (
           <article key={group.title} data-reveal>
@@ -227,6 +257,7 @@ function About({ content }: { content: ResumeContent }) {
   return (
     <section className="section about-section" id="about">
       <SectionHeading index="05" title={content.labels.sections.about} lead={content.education.heading} />
+      <SectionBrief brief={content.sectionBriefs.about} />
       <div className="about-layout">
         <p className="about-intro" data-reveal>{content.education.intro}</p>
         <dl data-reveal>

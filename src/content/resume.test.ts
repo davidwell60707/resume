@@ -8,10 +8,28 @@ describe("resumeContent", () => {
 
       expect(content.profile.name).toBeTruthy();
       expect(content.values).toHaveLength(4);
-      expect(content.projects).toHaveLength(4);
+      expect(Object.keys(content.sectionBriefs)).toEqual([
+        "values",
+        "experience",
+        "projects",
+        "skills",
+        "about"
+      ]);
+      expect(content.projects).toHaveLength(6);
       expect(content.experience.length).toBeGreaterThanOrEqual(7);
+      expect(content.experience.every((item) => item.highlights.length >= 2)).toBe(true);
       expect(content.skills).toHaveLength(6);
       expect(content.education.items.length).toBeGreaterThanOrEqual(3);
+    }
+  });
+
+  it("provides evidence cards and summaries for every section brief", () => {
+    for (const locale of ["zh-TW", "en"] as const) {
+      for (const brief of Object.values(resumeContent[locale].sectionBriefs)) {
+        expect(brief.summary.length).toBeGreaterThanOrEqual(1);
+        expect(brief.cards.length).toBeGreaterThanOrEqual(3);
+        expect(brief.cards.every((card) => card.title && card.description)).toBe(true);
+      }
     }
   });
 
