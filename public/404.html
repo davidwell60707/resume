@@ -3,34 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fffdf8" />
     <title>Page not found | David Wei</title>
     <style>
+      :root {
+        color-scheme: light;
+        --paper: #f1eee7;
+        --surface: #fffdf8;
+        --navy: #173a5e;
+        --ink: #202933;
+        --gold: #9b662d;
+      }
+      * { box-sizing: border-box; }
       body {
         display: grid;
         min-height: 100vh;
         margin: 0;
+        padding: 1.5rem;
         place-items: center;
-        background: #071217;
-        color: #f1eee7;
-        font: 18px/1.7 Inter, "Microsoft JhengHei", Arial, sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        font: 18px/1.7 "Microsoft JhengHei", sans-serif;
       }
       main {
-        max-width: 36rem;
-        padding: 3rem;
-        border-left: 1px solid #73d8c7;
+        width: min(100%, 42rem);
+        padding: clamp(2rem, 8vw, 5rem);
+        border-top: 5px solid var(--gold);
+        background: var(--surface);
+        box-shadow: 0 18px 50px rgba(23, 58, 94, .08);
       }
       h1 {
         margin: 0;
-        color: #73d8c7;
-        font-size: clamp(4rem, 14vw, 9rem);
-        line-height: 1;
+        color: var(--navy);
+        font: 500 clamp(4rem, 14vw, 8rem)/1 Georgia, serif;
       }
       a {
-        color: #f1eee7;
-        text-underline-offset: 0.4rem;
+        color: var(--navy);
+        font-weight: 700;
+        text-underline-offset: .35rem;
       }
       a:focus-visible {
-        outline: 2px solid #f2b766;
+        outline: 3px solid rgba(155, 102, 45, .45);
         outline-offset: 5px;
       }
     </style>
@@ -38,7 +51,7 @@
   <body>
     <main>
       <h1>404</h1>
-      <p>這個頁面不存在。The page you requested could not be found.</p>
+      <p>找不到此頁面。The page you requested could not be found.</p>
       <a href="./">返回履歷首頁 / Back to resume</a>
     </main>
   </body>

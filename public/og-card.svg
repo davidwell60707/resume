@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#071217"/><path stroke="#17323a" d="M0 105h1200M0 210h1200M0 315h1200M0 420h1200M0 525h1200M200 0v630M400 0v630M600 0v630M800 0v630M1000 0v630"/><text x="90" y="245" fill="#f1eee7" font-family="sans-serif" font-size="86" font-weight="600">魏大為 / David Wei</text><text x="94" y="330" fill="#73d8c7" font-family="monospace" font-size="34">Senior Java Backend Engineer / System Analyst</text><text x="94" y="435" fill="#93a6a9" font-family="sans-serif" font-size="29">Enterprise systems · Java · Cloud delivery · Security operations</text><circle cx="1090" cy="525" r="14" fill="#f2b766"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f1eee7"/>
+  <rect x="52" y="52" width="1096" height="526" fill="#fffdf8"/>
+  <rect x="52" y="52" width="12" height="526" fill="#9b662d"/>
+  <text x="125" y="245" fill="#173a5e" font-family="Georgia, serif" font-size="86" font-weight="600">魏大為 / David Wei</text>
+  <text x="130" y="330" fill="#9b662d" font-family="monospace" font-size="34">Senior Java Backend Engineer / System Analyst</text>
+  <text x="130" y="435" fill="#68727a" font-family="sans-serif" font-size="29">Enterprise systems · Java · Cloud delivery · Security operations</text>
+  <rect x="1030" y="430" width="72" height="72" fill="none" stroke="#173a5e" stroke-width="3"/>
+  <text x="1042" y="480" fill="#173a5e" font-family="Georgia, serif" font-size="36">DW</text>
+</svg>
