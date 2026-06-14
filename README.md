@@ -1,0 +1,42 @@
+# David Wei Resume
+
+魏大為的雙語一頁式履歷網站，定位為 Senior Java Backend Engineer / System Analyst。網站以 React、TypeScript 與 Vite 建置，可部署至 GitHub Pages。
+
+## Local Development
+
+```powershell
+npm install
+npm run dev
+```
+
+Vite 預設會在 `http://localhost:5173` 啟動。
+
+## Verification
+
+```powershell
+npm test
+npm run typecheck
+npm run build
+```
+
+## Content Updates
+
+- 中英文內容：`src/content/resume.ts`
+- 資料介面：`src/content/types.ts`
+- 樣式與 responsive rules：`src/styles.css`
+- 公開 PDF：`public/david-wei-resume-public.pdf`
+- SEO 與 JSON-LD：`index.html`、`src/App.tsx`
+
+若要新增 GitHub 或 LinkedIn，請在兩種語言的 `profile.socials` 提供相同的真實 URL；陣列為空時網站不顯示社群連結。
+
+## GitHub Pages
+
+1. 前往 repository 的 **Settings → Pages**。
+2. 將 **Source** 設定為 **GitHub Actions**。
+3. push 到 `main` 後，workflow 會執行型別檢查、測試、build 與部署。
+
+Vite 在 GitHub Actions 中會將 base path 設為 `/resume/`，符合此 repository 的 GitHub Pages URL。
+
+## Privacy
+
+公開版不包含電話、生日、詳細地址與內部系統敏感資訊。履歷下載檔也維持相同原則。
