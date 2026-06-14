@@ -30,17 +30,39 @@ describe("App", () => {
     expect(screen.queryByRole("link", { name: /LinkedIn/i })).not.toBeInTheDocument();
   });
 
-  it("expands a selected project and updates its accessible state", async () => {
+  it("opens the first project by default and allows it to be collapsed", async () => {
     const user = userEvent.setup();
     render(<App />);
 
-    const expandButton = screen.getByRole("button", {
-      name: /展開.*電信反詐與情資管理平台/
+    const firstProject = screen.getByRole("button", {
+      name: /收合詳情.*電信反詐與情資管理平台/
     });
 
-    expect(expandButton).toHaveAttribute("aria-expanded", "false");
-    await user.click(expandButton);
-    expect(expandButton).toHaveAttribute("aria-expanded", "true");
+    expect(firstProject).toHaveAttribute("aria-expanded", "true");
     expect(screen.getByText(/資料同步與批次排程/)).toBeVisible();
+
+    await user.click(firstProject);
+
+    expect(firstProject).toHaveAttribute("aria-expanded", "false");
+    expect(firstProject).toHaveAccessibleName(/查看專案詳情/);
+  });
+
+  it("keeps only one project open when another project is selected", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    const firstProject = screen.getByRole("button", {
+      name: /收合詳情.*電信反詐與情資管理平台/
+    });
+    const secondProject = screen.getByRole("button", {
+      name: /查看專案詳情.*電信客服與企業內部管理平台/
+    });
+
+    await user.click(secondProject);
+
+    expect(firstProject).toHaveAttribute("aria-expanded", "false");
+    expect(secondProject).toHaveAttribute("aria-expanded", "true");
+    expect(firstProject).toHaveAttribute("aria-controls", "anti-fraud-details");
+    expect(secondProject).toHaveAttribute("aria-controls", "customer-service-details");
   });
 });
