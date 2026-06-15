@@ -45,4 +45,9 @@ describe("resumeContent", () => {
     expect(resumeContent["zh-TW"].profile.socials).toEqual([]);
     expect(resumeContent.en.profile.socials).toEqual([]);
   });
+
+  it("uses a cross-platform apostrophe in the English contact heading", () => {
+    expect(resumeContent.en.labels.sections.contact).toBe("Let's build systems that last");
+    expect(resumeContent.en.labels.sections.contact).not.toContain("’");
+  });
 });

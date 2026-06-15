@@ -371,7 +371,7 @@ export const resumeContent: LocalizedContent = {
         projects: "Selected Work", projectsLead: "Selected projects across anti-fraud, customer service, banking, high-volume messaging, cloud server firmware, and digital content demonstrate practical depth in analysis, integration, backend delivery, deployment, and operations.",
         experience: "Experience", experienceLead: "My experience spans web platforms, server firmware, financial systems, telecom platforms, and anti-fraud applications, with recent focus on system analysis, cloud deployment, security remediation, and cross-functional delivery.",
         skills: "Technical Toolkit", skillsLead: "My toolkit is organized around enterprise delivery: Java backend development, Angular frontend implementation, database design, cloud deployment, CI/CD, security remediation, observability, and production troubleshooting.",
-        about: "About", contact: "Let’s build systems that last", contactLead: "I am exploring Senior Java Backend Engineer, System Analyst, and enterprise delivery opportunities."
+        about: "About", contact: "Let's build systems that last", contactLead: "I am exploring Senior Java Backend Engineer, System Analyst, and enterprise delivery opportunities."
       },
       meta: { role: "Role", contribution: "Contribution", technology: "Technology" }
     }
