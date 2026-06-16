@@ -35,6 +35,9 @@ describe("Responsive portrait and project layout", () => {
     expect(styles).toMatch(
       /\.portrait-frame::before\s*\{[\s\S]*inset: 14px;[\s\S]*border: 1px solid var\(--gold\);/
     );
+    expect(styles).toMatch(
+      /\.hero\s*\{[\s\S]*grid-template-areas:[\s\S]*"heading portrait"[\s\S]*"copy portrait";/
+    );
   });
 
   it("keeps mobile project metadata visible in the collapsed row", () => {
@@ -45,5 +48,17 @@ describe("Responsive portrait and project layout", () => {
       /@media \(max-width: 620px\)[\s\S]*\.project-period\s*\{[\s\S]*display: block;[\s\S]*grid-column: 2;/
     );
     expect(styles).toMatch(/\.project-details\[hidden\]\s*\{\s*display: none;\s*\}/);
+  });
+
+  it("accounts for the two-row mobile header and centers the mobile portrait", () => {
+    expect(styles).toMatch(
+      /@media \(max-width: 900px\)[\s\S]*\.hero,\s*[\s\S]*\.section,\s*[\s\S]*\.contact-section\s*\{[\s\S]*scroll-margin-top: 136px;/
+    );
+    expect(styles).toMatch(
+      /@media \(max-width: 620px\)[\s\S]*\.hero\s*\{[\s\S]*grid-template-areas:[\s\S]*"heading"[\s\S]*"portrait"[\s\S]*"copy";/
+    );
+    expect(styles).toMatch(
+      /@media \(max-width: 620px\)[\s\S]*\.portrait-frame\s*\{[\s\S]*width: min\(62vw, 230px\);[\s\S]*justify-self: center;/
+    );
   });
 });

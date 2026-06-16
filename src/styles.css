@@ -108,6 +108,9 @@ main, footer {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) clamp(180px, 19vw, 226px);
+  grid-template-areas:
+    "heading portrait"
+    "copy portrait";
   gap: clamp(2.5rem, 7vw, 6rem);
   min-height: 540px;
   padding: clamp(4rem, 8vw, 6.5rem) var(--gutter);
@@ -124,6 +127,15 @@ main, footer {
   background: linear-gradient(90deg, var(--gold) 0 7rem, transparent 7rem);
   content: "";
 }
+.hero-heading {
+  grid-area: heading;
+  align-self: end;
+}
+.hero-copy {
+  grid-area: copy;
+  align-self: start;
+}
+.hero-copy > .hero-context { display: none; }
 .hero-context,
 .detail-label,
 .project-title small,
@@ -212,6 +224,8 @@ main, footer {
 .button-secondary:hover { background: #edf1f3; }
 .portrait-frame {
   position: relative;
+  grid-area: portrait;
+  justify-self: center;
   display: grid;
   width: clamp(176px, 18vw, 220px);
   aspect-ratio: 1;
@@ -685,6 +699,11 @@ footer svg { width: .9rem; }
   }
   .site-header nav a { white-space: nowrap; }
   .locale-switch { justify-self: end; }
+  .hero,
+  .section,
+  .contact-section {
+    scroll-margin-top: 136px;
+  }
   .hero { padding-top: 7.5rem; }
   .values-list,
   .timeline,
@@ -705,16 +724,40 @@ footer svg { width: .9rem; }
   .site-header nav { gap: 1.3rem; }
   .hero {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "heading"
+      "portrait"
+      "copy";
     min-height: auto;
-    gap: 3rem;
+    gap: 1.55rem;
+    padding-top: 6.75rem;
+    padding-bottom: 4.7rem;
   }
   .hero h1 { font-size: clamp(3.2rem, 18vw, 5rem); }
   .hero h1 { white-space: normal; }
-  .portrait-frame {
-    width: 120px;
-    justify-self: end;
+  .hero-statement {
+    margin-top: .15rem;
+    font-size: clamp(1.18rem, 7vw, 1.55rem);
   }
-  .portrait-photo { width: 98px; }
+  .hero-summary { font-size: .96rem; }
+  .hero-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+  }
+  .button {
+    justify-content: center;
+    min-width: 0;
+    padding-inline: .75rem;
+    white-space: nowrap;
+  }
+  .portrait-frame {
+    width: min(62vw, 230px);
+    margin: .2rem auto .3rem;
+    justify-self: center;
+  }
+  .portrait-frame::before { inset: 13px; }
+  .portrait-photo { width: calc(100% - 44px); }
   .section-heading {
     grid-template-columns: 1fr;
     gap: .5rem;

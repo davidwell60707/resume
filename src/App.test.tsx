@@ -75,6 +75,7 @@ describe("App", () => {
     expect(firstProject).toHaveAttribute("aria-expanded", "false");
     expect(firstProject).toHaveAccessibleName(/查看專案詳情/);
     expect(firstProjectDetails).toHaveAttribute("hidden");
+    expect(firstProject.closest(".project")).not.toHaveAttribute("data-reveal");
   });
 
   it("keeps only one project open when another project is selected", async () => {

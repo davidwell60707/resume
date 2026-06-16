@@ -87,10 +87,20 @@ function Hero({ content }: { content: ResumeContent }) {
 
   return (
     <section className="hero" id="profile" aria-labelledby="hero-title">
-      <div className="hero-copy">
+      <div className="hero-heading">
         <p className="hero-context">Professional Resume · {profile.location}</p>
         <h1 id="hero-title"><span>{profile.name}</span><span>{profile.englishName}</span></h1>
         <p className="hero-role">{profile.title}</p>
+      </div>
+      <div className="portrait-frame">
+        <img
+          className="portrait-photo"
+          src={`${import.meta.env.BASE_URL}profile-photo.png`}
+          alt={profile.name}
+        />
+      </div>
+      <div className="hero-copy">
+        <p className="hero-context">Professional Resume · {profile.location}</p>
         <p className="hero-statement">{profile.statement}</p>
         <p className="hero-summary">{profile.summary}</p>
         <div className="hero-meta">
@@ -105,13 +115,6 @@ function Hero({ content }: { content: ResumeContent }) {
             <Download aria-hidden="true" />{labels.actions.resume}
           </a>
         </div>
-      </div>
-      <div className="portrait-frame">
-        <img
-          className="portrait-photo"
-          src={`${import.meta.env.BASE_URL}profile-photo.png`}
-          alt={profile.name}
-        />
       </div>
     </section>
   );
@@ -177,7 +180,7 @@ function ProjectAccordionItem({
   const detailsId = `${project.id}-details`;
 
   return (
-    <article className={`project ${isOpen ? "expanded" : ""}`} data-reveal>
+    <article className={`project ${isOpen ? "expanded" : ""}`}>
       <button
         type="button"
         aria-expanded={isOpen}
