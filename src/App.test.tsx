@@ -10,7 +10,7 @@ describe("App", () => {
     document.documentElement.lang = "";
   });
 
-  it("switches between Traditional Chinese and English and persists the choice", async () => {
+  it("switches between Traditional Chinese and English", async () => {
     const user = userEvent.setup();
     render(<App />);
 
@@ -20,7 +20,25 @@ describe("App", () => {
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("David Wei");
     expect(document.documentElement.lang).toBe("en");
-    expect(window.localStorage.getItem("resume-locale")).toBe("en");
+  });
+
+  it("starts in Traditional Chinese even when an old English preference exists", () => {
+    window.localStorage.setItem("resume-locale", "en");
+
+    render(<App />);
+
+    expect(screen.getByRole("button", { name: "中文" })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("魏大為");
+    expect(document.documentElement.lang).toBe("zh-TW");
+  });
+
+  it("renders the supplied profile photo instead of the portrait placeholder", () => {
+    render(<App />);
+
+    const portrait = screen.getByRole("img", { name: "魏大為" });
+
+    expect(portrait).toHaveAttribute("src", expect.stringMatching(/profile-photo\.png$/));
+    expect(screen.queryByText("PORTRAIT RESERVED")).not.toBeInTheDocument();
   });
 
   it("does not render social links when URLs are unavailable", () => {
@@ -56,6 +74,7 @@ describe("App", () => {
 
     expect(firstProject).toHaveAttribute("aria-expanded", "false");
     expect(firstProject).toHaveAccessibleName(/查看專案詳情/);
+    expect(firstProjectDetails).toHaveAttribute("hidden");
   });
 
   it("keeps only one project open when another project is selected", async () => {

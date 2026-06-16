@@ -106,10 +106,12 @@ function Hero({ content }: { content: ResumeContent }) {
           </a>
         </div>
       </div>
-      <div className="portrait-frame" aria-label="David Wei portrait placeholder">
-        <div className="portrait-grid" aria-hidden="true" />
-        <span>DW</span>
-        <small>PORTRAIT RESERVED</small>
+      <div className="portrait-frame">
+        <img
+          className="portrait-photo"
+          src={`${import.meta.env.BASE_URL}profile-photo.png`}
+          alt={profile.name}
+        />
       </div>
     </section>
   );
@@ -191,23 +193,21 @@ function ProjectAccordionItem({
         <span className="project-period">{project.period}</span>
         <span className="project-action">{action}<ChevronDown aria-hidden="true" /></span>
       </button>
-      {isOpen && (
-        <div className="project-details" id={detailsId}>
-          <div>
-            <span className="detail-label">{labels.meta.role}</span>
-            <p>{project.role}</p>
-          </div>
-          <div className="project-narrative">
-            <p>{project.summary}</p>
-            <span className="detail-label">{labels.meta.contribution}</span>
-            <ul>{project.contributions.map((item) => <li key={item}>{item}</li>)}</ul>
-          </div>
-          <div>
-            <span className="detail-label">{labels.meta.technology}</span>
-            <ul className="tech-list">{project.technologies.map((item) => <li key={item}>{item}</li>)}</ul>
-          </div>
+      <div className="project-details" id={detailsId} hidden={!isOpen}>
+        <div>
+          <span className="detail-label">{labels.meta.role}</span>
+          <p>{project.role}</p>
         </div>
-      )}
+        <div className="project-narrative">
+          <p>{project.summary}</p>
+          <span className="detail-label">{labels.meta.contribution}</span>
+          <ul>{project.contributions.map((item) => <li key={item}>{item}</li>)}</ul>
+        </div>
+        <div>
+          <span className="detail-label">{labels.meta.technology}</span>
+          <ul className="tech-list">{project.technologies.map((item) => <li key={item}>{item}</li>)}</ul>
+        </div>
+      </div>
     </article>
   );
 }

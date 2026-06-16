@@ -107,8 +107,8 @@ main, footer {
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 150px;
-  gap: clamp(2.5rem, 8vw, 7rem);
+  grid-template-columns: minmax(0, 1fr) clamp(180px, 19vw, 226px);
+  gap: clamp(2.5rem, 7vw, 6rem);
   min-height: 540px;
   padding: clamp(4rem, 8vw, 6.5rem) var(--gutter);
   align-items: center;
@@ -128,8 +128,7 @@ main, footer {
 .detail-label,
 .project-title small,
 .section-heading > span,
-.timeline-period,
-.portrait-frame small {
+.timeline-period {
   font-family: var(--mono);
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -214,34 +213,31 @@ main, footer {
 .portrait-frame {
   position: relative;
   display: grid;
-  width: 150px;
+  width: clamp(176px, 18vw, 220px);
   aspect-ratio: 1;
   place-items: center;
   border: 1px solid var(--navy);
-  color: var(--navy);
+  background:
+    linear-gradient(135deg, rgba(23, 58, 94, .06), transparent 46%),
+    var(--surface);
+  isolation: isolate;
 }
-.portrait-grid {
+.portrait-frame::before {
   position: absolute;
-  inset: 9px;
+  inset: 14px;
   border: 1px solid var(--gold);
-}
-.portrait-frame > span {
+  content: "";
+  pointer-events: none;
   z-index: 1;
-  font: 500 3.2rem var(--display);
 }
-.portrait-frame small {
-  position: absolute;
-  bottom: -2rem;
-  color: var(--muted);
-  font-size: .55rem;
-  white-space: nowrap;
-}
-.portrait-frame svg {
-  position: absolute;
-  top: .7rem;
-  right: .7rem;
-  width: 1rem;
-  color: var(--gold);
+.portrait-photo {
+  display: block;
+  width: calc(100% - 48px);
+  aspect-ratio: 1;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: 50% 28%;
+  box-shadow: 0 10px 24px rgb(18 45 76 / 14%);
 }
 
 .section {
@@ -491,6 +487,7 @@ main, footer {
   border-left: 3px solid var(--gold);
   background: #f7f2e9;
 }
+.project-details[hidden] { display: none; }
 .detail-label {
   color: var(--gold);
   font-size: .61rem;
@@ -717,6 +714,7 @@ footer svg { width: .9rem; }
     width: 120px;
     justify-self: end;
   }
+  .portrait-photo { width: 98px; }
   .section-heading {
     grid-template-columns: 1fr;
     gap: .5rem;
@@ -736,11 +734,22 @@ footer svg { width: .9rem; }
     gap: .8rem;
   }
   .project > button {
-    grid-template-columns: 2rem minmax(0, 1fr);
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
     gap: .8rem;
+    padding: 1.2rem 0;
   }
-  .project-period { display: none; }
-  .project-action { grid-column: 2; }
+  .project-period {
+    display: block;
+    grid-column: 2;
+    font-size: .64rem;
+    white-space: normal;
+  }
+  .project-action {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    justify-self: end;
+    min-width: max-content;
+  }
   .project-details { margin-left: 0; padding: 1.2rem; }
   .skill-groups article {
     grid-template-columns: 2rem 1fr;

@@ -26,3 +26,24 @@ describe("English editorial layout", () => {
     );
   });
 });
+
+describe("Responsive portrait and project layout", () => {
+  it("uses a square editorial portrait treatment", () => {
+    expect(styles).toMatch(
+      /\.portrait-photo\s*\{[\s\S]*width: calc\(100% - 48px\);[\s\S]*border-radius: 0;/
+    );
+    expect(styles).toMatch(
+      /\.portrait-frame::before\s*\{[\s\S]*inset: 14px;[\s\S]*border: 1px solid var\(--gold\);/
+    );
+  });
+
+  it("keeps mobile project metadata visible in the collapsed row", () => {
+    expect(styles).toMatch(
+      /@media \(max-width: 620px\)[\s\S]*\.project > button\s*\{[\s\S]*grid-template-columns: 2rem minmax\(0, 1fr\) auto;/
+    );
+    expect(styles).toMatch(
+      /@media \(max-width: 620px\)[\s\S]*\.project-period\s*\{[\s\S]*display: block;[\s\S]*grid-column: 2;/
+    );
+    expect(styles).toMatch(/\.project-details\[hidden\]\s*\{\s*display: none;\s*\}/);
+  });
+});
