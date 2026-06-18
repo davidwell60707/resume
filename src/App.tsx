@@ -302,7 +302,7 @@ function updateMetadata(locale: Locale) {
 export default function App() {
   const { locale, setLocale } = useLocale();
   const content = resumeContent[locale];
-  useReveal();
+  useReveal(locale);
   useEffect(() => updateMetadata(locale), [locale]);
 
   return (

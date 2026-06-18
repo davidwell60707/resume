@@ -1,6 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
 import "./test/setup";
 
@@ -20,6 +20,29 @@ describe("App", () => {
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("David Wei");
     expect(document.documentElement.lang).toBe("en");
+  });
+
+  it("observes newly rendered timeline items after the language changes", async () => {
+    const user = userEvent.setup();
+    const observedElements: Element[] = [];
+
+    class CapturingIntersectionObserver {
+      observe = vi.fn((element: Element) => {
+        observedElements.push(element);
+      });
+      unobserve = vi.fn();
+      disconnect = vi.fn();
+    }
+
+    window.IntersectionObserver = CapturingIntersectionObserver as unknown as typeof IntersectionObserver;
+
+    render(<App />);
+
+    await user.click(screen.getByRole("button", { name: "English" }));
+
+    const englishTimelineItem = screen.getByText("Taiwan Mobile").closest("article");
+    expect(englishTimelineItem).not.toBeNull();
+    expect(observedElements).toContain(englishTimelineItem);
   });
 
   it("starts in Traditional Chinese even when an old English preference exists", () => {

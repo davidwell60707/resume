@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export function useReveal() {
+export function useReveal(refreshKey?: unknown) {
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -21,5 +21,5 @@ export function useReveal() {
     );
     elements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
-  }, []);
+  }, [refreshKey]);
 }
